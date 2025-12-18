@@ -5,6 +5,6 @@ Team,
 Type_of_churn AS Churn_Type,
 Reasons_for_Customer_Churn AS Churn_Reason
 FROM `data-project-434509.kmr_data.Data_Churn`
-WHERE store_id IS NOT NULL
+WHERE Month IS NOT NULL AND store_id IS NOT NULL
 
 --- Check month + store_id có duplicate không ?

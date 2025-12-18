@@ -13,4 +13,4 @@ Supplier,
 ON_OFF
 FROM a 
 WHERE SKU IS NOT NULL
--- Check đk SKU duplicate
+-- Check đk SKU không được duplicate và product name

@@ -7,4 +7,4 @@ CAST(Geocode AS STRING) Geocode
 FROM `data-project-434509.kmr_data.Data_Geocode`
 WHERE Store_id IS NOT NULL 
 
---- Check Store_id có bị duplicate không
+--- Check Store_id có bị duplicate không và address có null không ?
