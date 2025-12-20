@@ -1,0 +1,187 @@
+version: 2
+
+models: 
+      - name: stg_churn_reason
+        description: "Bảng ghi nhận lý do rời bỏ của khách hàng"
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns: ["Month", "Store_ID"]
+        columns:
+          - name: Month
+            tests:
+              - not_null
+          - name: Store_ID
+            tests:
+              - not_null
+          - name: Team
+            tests:
+              - not_null
+
+          - name: Churn_Type
+
+            tests:
+
+              - not_null
+
+      # --- Bảng 2 ---
+
+      - name: stg_cust_segment
+
+        description: "Customer segmentation data"
+
+
+
+      # --- Bảng 3 ---
+
+      - name: stg_customer
+
+        description: "Bảng thông tin chi tiết khách hàng và cửa hàng"
+
+        tests:
+
+          - dbt_utils.unique_combination_of_columns:
+
+              combination_of_columns: ["Store_ID", "Store_Address"]
+
+        columns:
+
+          - name: Store_ID
+
+            tests:
+
+              - not_null
+
+          - name: Customer_ID
+
+            tests:
+
+              - not_null
+
+          - name: Store_Name
+
+            tests:
+
+              - not_null
+
+          - name: Store_Address
+
+            tests:
+
+              - not_null
+
+
+
+      # --- Bảng 4 ---
+
+      - name: stg_duplicated
+
+        description: "Bảng theo dõi lý do rời bỏ của cửa hàng theo tháng"
+
+        tests:
+
+          - dbt_utils.unique_combination_of_columns:
+
+              combination_of_columns: ["Month", "Store_ID"]
+
+        columns:
+
+          - name: Month
+
+            tests:
+
+              - not_null
+
+          - name: Store_ID
+
+            tests:
+
+              - not_null
+
+
+
+      # --- Bảng 5 ---
+
+      - name: stg_geocode
+
+        description: "Bảng lưu trữ tọa độ địa lý"
+
+        columns:
+
+          - name: Store_ID
+
+            tests:
+
+              - not_null
+
+              - unique
+
+          - name: Geocode
+
+            tests:
+
+              - not_null
+
+
+
+      # --- Bảng 6 ---
+
+      - name: stg_price
+
+        description: "Bảng giá"
+
+        columns:
+
+          - name: CODE
+
+            tests:
+
+              - unique
+
+              - not_null
+
+          - name: PRICE_INCLUDE_VAT
+
+            tests:
+
+              - dbt_utils.accepted_range:
+
+                  min_value: 0
+
+                  inclusive: false
+
+
+
+      # --- Thêm các bảng khác (stg_product, stg_sales_target, v.v.) vào đây ---
+
+      - name: stg_product
+        description: "Bảng sản phẩm"
+        columns:
+          - name: SKU
+            tests:
+              - unique
+              - not_null
+          - name: Product_Name
+            tests:
+              - not_null
+
+      - name: stg_sales_target
+        description: "Sales targets and performance quotas"
+        columns:
+          - name: sub_team
+            tests:
+              - not_null
+          - name: month
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns: ["month", "sub_team"]
+
+      - name: stg_transfer_pic
+        description: "Historical records of PIC transfers"
+        columns:
+          - name: PIC
+            tests:
+              - not_null
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns: ["Month", "Buyer_id"]
+
