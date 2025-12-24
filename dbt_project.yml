@@ -44,4 +44,9 @@ models:
     # Thêm cấu hình này cho thư mục 'stg_data_kmr'
     stg_data_kmr:
       # Thiết lập tất cả các models trong thư mục này là 'view'
+      +materialized: view
+
+   # Thêm cấu hình này cho thư mục 'mart_data_kmr'
+    mart_data_kmr:
+      # Thiết lập tất cả các models trong thư mục này là 'view'
       +materialized: table

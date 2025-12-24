@@ -1,0 +1,1 @@
+SELECT * FROM {{ref("mart_customer_segment")}}
