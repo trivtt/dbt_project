@@ -1,1 +1,1 @@
-SELECT * FROM {{ref("mart_customer_segment")}}
+SELECT * FROM {{ref("stg_cust_segment")}}
