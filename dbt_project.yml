@@ -50,3 +50,9 @@ models:
     mart_data_kmr:
       # Thiết lập tất cả các models trong thư mục này là 'view'
       +materialized: table
+
+   # Thêm cấu hình này cho thư mục 'mart_data_kmr'
+    stg_superstore:
+      # Thiết lập tất cả các models trong thư mục này là 'view'
+      +materialized: view
+
