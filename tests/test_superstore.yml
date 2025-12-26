@@ -1,0 +1,93 @@
+version: 2
+
+models: 
+
+      - name: stg_pic_sup
+
+        description: "Bảng record thông tin nhân viên sales"
+
+        tests:
+
+          - dbt_utils.unique_combination_of_columns:
+
+              combination_of_columns: ["PIC_Code", "PIC_Name"]
+
+        columns:
+
+          - name: PIC_Code
+            tests:
+
+              - not_null
+              - unique
+              
+          - name: PIC_Name
+            tests:
+
+              - not_null
+
+      - name: stg_customer_sup
+        description: "Bảng ghi nhận thông tin khách hàng"
+        columns:
+          - name: Customer_ID
+            tests:
+              - not_null
+              - unique
+          - name: Customer_Name
+            tests:
+              - not_null
+              - unique
+
+
+      - name: stg_location_sup
+
+        description: "Bảng record location theo postal code"
+
+        tests:
+
+          - dbt_utils.unique_combination_of_columns:
+
+              combination_of_columns: ["Postal_Code", "Country","City","State","Region"]
+
+        columns:
+
+          - name: Postal_Code
+            tests:
+
+              - not_null
+              - unique
+
+
+      - name: stg_product_sup
+
+        description: "Bảng record thông tin sản phẩm"
+
+        tests:
+
+          - dbt_utils.unique_combination_of_columns:
+
+              combination_of_columns: ["Product_ID", "Product_Name"]
+
+        columns:
+
+          - name: Product_ID
+            tests:
+
+              - not_null
+              - unique
+
+          - name: Product_Name
+            tests:
+
+              - not_null
+
+          - name: Category
+            tests:
+
+              - not_null
+            
+          - name: Sub_Category
+            tests:
+
+              - not_null
+
+    
